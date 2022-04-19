@@ -140,12 +140,17 @@ import { CoursesService } from "./courses.service";
                 </li>
             </span>
         </ul>
+
+        <!-- Custom Pipe -->
+        <h2 class="my-3">Custom Pipe</h2>
+        <p>{{longText | summary: 15}}</p>
     `
 })
 
 export class CoursesComponent {
     /* Interpolation ------ */
     title = "List of courses";
+    longText = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis error, fugit amet sint commodi aut beatae sunt voluptatem expedita dolor placeat animi dolorum, atque obcaecati vitae maxime minima perferendis alias quidem."
 
     /* Attribute binding ------ */
     imageUrl = "https://lh3.googleusercontent.com/ogw/ADea4I71wuZ_VObcWF2j-qUldZXjn9BQU6B3iOIBhr0ABg=s32-c-mo";
