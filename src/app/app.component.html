@@ -354,6 +354,19 @@
   <courses class="mb-4"></courses>
   
   <app-favorite [is-favorite]="post.isFavorite" (change)="onChanged($event)"></app-favorite>
+  
+  <!-- instead of using property binding [body]="body", and bind the input and output properties for Heading and Body as before use the ng-content in parent component and attach id/class to track it, then reference each at the point of initialization as seen below -->
+  <h1 class="mb-3">NgContent</h1>
+  <bootstrap-panel>
+    <!-- to render just the content without putting inside div or any html element use ng-container -->
+    <ng-container id="heading">Just Text Heading</ng-container>
+
+    <div id="heading">Heading</div>
+    <div id="body">
+      <h2>Body</h2>
+      <p>Body Elements</p>
+    </div>
+  </bootstrap-panel>
 
   <h2>Resources</h2>
   <p>Here are some links to help you get started:</p>

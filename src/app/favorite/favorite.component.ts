@@ -1,9 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-favorite',
   templateUrl: './favorite.component.html',
-  styleUrls: ['./favorite.component.css']
+  styleUrls: ['./favorite.component.css'],
+  /* ViewEncapsulation prevents style bleeding from point of definition 
+    .Emulated emulates the default Shadow Dom encapsulation behavior like .createShadowRoot() in js.
+    .Native/ShadowDom uses the browser's native Shadow Dom API.
+    .None means don't provide any form of CSS Style encapsulation.. Leads to style bleeding/overflow
+   */
+  // encapsulation: ViewEncapsulation.Emulated
 })
 export class FavoriteComponent implements OnInit {
   // we use alias to keep the component stable, incase there is change.
