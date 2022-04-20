@@ -353,7 +353,7 @@
   <!-- Resources -->
   <courses class="mb-4"></courses>
   
-  <app-favorite [is-favorite]="post.isFavorite"></app-favorite>
+  <app-favorite [is-favorite]="post.isFavorite" (change)="onChanged($event)"></app-favorite>
 
   <h2>Resources</h2>
   <p>Here are some links to help you get started:</p>
