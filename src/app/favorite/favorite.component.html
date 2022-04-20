@@ -1,0 +1,4 @@
+<div ngClass="mt-4 mb-5" (click)="onFavoriteChange()">
+    <h2 [style.color]="[!isFavorite? 'blue': 'red']">favorite works!</h2>
+    <span class="glyphicon" [class.glyphicon-star]="isFavorite" [class.glyphicon-star-empty]="!isFavorite"></span>
+</div>
