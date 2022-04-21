@@ -11,7 +11,7 @@ export class CoursesService {
             },
             {
                 name: "Course 2",
-                desc: "",
+                desc: "Description of Course 2",
                 rating: "4.675",
                 students: "20200",
                 price: "190.295",

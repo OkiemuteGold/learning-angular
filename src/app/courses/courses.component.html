@@ -68,9 +68,48 @@
 <!-- Pipes --Uppercase, Lowercase, Currency, Decimal (number), Percentage -->
 <h2 class="my-3">Pipes</h2>
 <p class="my-3">Show only the courses that have description</p>
-<ul>
-    <span ngClass="courses" *ngFor="let course of courses">
-        <li *ngIf="course.desc || course.desc !== ''">
+
+<h2>ngSwitchCase</h2>
+
+<ul class="nav nav-pills my-3">
+    <li class="m-1">
+        <button class="btn" [class.active]="viewMode == 'grid'" [class]="viewMode=='grid'?'btn-primary':'btn-secondary'"
+            (click)="viewMode='grid'">Grid View</button>
+    </li>
+    <li class="m-1">
+        <button class="btn" [class.active]="viewMode == 'list'" [class]="viewMode=='list'?'btn-primary':'btn-secondary'"
+            (click)="viewMode='list'">List View</button>
+    </li>
+    <li class="m-1">
+        <button class="btn btn-outline-secondary" (click)="showCourse = !showCourse">Add New Course</button>
+    </li>
+</ul>
+
+<div class="my-4" *ngIf="showCourse">
+    <form (submit)="addCourse()">
+        <div class="form-group">
+            <input class="form-control my-3" type="text" name="name" id="name" placeholder="Course name" [(ngModel)]="courseName">
+            <input class="form-control my-3" type="text" name="description" id="description" placeholder="Course description" [(ngModel)]="courseDescription">
+            <input class="form-control my-3" type="number" name="rating" id="rating" min="0" placeholder="Course rating" [(ngModel)]="courseRating">
+            <input class="form-control my-3" type="number" name="students" id="students" min="0" placeholder="Number of students enrolled" [(ngModel)]="courseStudents">
+            <input class="form-control my-3" type="number" name="price" id="price" min="0" placeholder="Course price" [(ngModel)]="coursePrice">
+            <input class="form-control my-3" type="date" name="date" id="date" aria-placeholder="Date" [(ngModel)]="courseDate">
+        </div>
+
+        <button class="btn btn-success" [disabled]="isInvalid()">Add Course</button>
+    </form>
+</div>
+
+<button class="btn btn-outline-secondary" (click)="reloadCourse()">Reload</button>
+
+<ul class="mb-5" [ngSwitch]="viewMode" [class]="viewMode == 'grid'? 'gridView':'listView'" *ngIf="courses && courses.length > 0; else noCourseAvailable">
+    <!-- using trackBy ensures that each time button is clicked to reloadCourse, Angular doesn't reconstruct the <ul> element, but rather track the object based on the id NOT the reference generated -->
+    <li ngClass="courses" *ngFor="let course of courses; trackBy: trackCourse; index as i; even as isEven">
+        <!-- <ng-container *ngIf="course.desc || course.desc !== ''"> -->
+            <div>
+                <div [ngStyle]="{'width': '24px', 'height': '24px', 'line-height': '24px', 'display': 'inline-block'}" class="bg-secondary text-white mb-1 rounded-circle text-center">{{i + 1}}</div>
+                <span *ngIf="isEven"><i> ...even by index...</i></span>
+            </div>
             <h3>
                 <span ngClass="sub_head">
                     {{course.name | uppercase }}
@@ -131,9 +170,16 @@
                 <span ngClass="sub_head">Release Date:</span>
                 {{course.releaseDate | date: 'dd-MM-yy'}}
             </p>
-        </li>
-    </span>
+
+            <button class="btn btn-danger btn-sm" (click)="deleteCourse(course)">Delete</button>
+        <!-- </ng-container> -->
+    </li>
 </ul>
+
+<ng-template #noCourseAvailable>
+    <h5 class="text-center w-75 my-4 mx-auto p-3 border">No Course Available</h5>
+</ng-template>
+
 
 <!-- Custom Pipe -->
 <h2 class="my-3">Custom Pipe</h2>

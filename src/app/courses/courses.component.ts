@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { CoursesService } from "./courses.service";
+import { CoursesService } from "../all-services/courses.service";
 
 
 @Component({
@@ -9,8 +9,20 @@ import { CoursesService } from "./courses.service";
 })
 
 export class CoursesComponent {
+    /* Directives */
+    viewMode = "grid";
+    showCourse = false;
+
+    courseName = "";
+    courseDescription = "";
+    courseRating = null;
+    courseStudents = null;
+    coursePrice = null;
+    courseDate = "";
+
     /* Interpolation ------ */
     title = "List of courses";
+    
     longText = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis error, fugit amet sint commodi aut beatae sunt voluptatem expedita dolor placeat animi dolorum, atque obcaecati vitae maxime minima perferendis alias quidem."
 
     /* Attribute binding ------ */
@@ -19,9 +31,61 @@ export class CoursesComponent {
 
     /* Directives -- Loops and Conditionals ------ */
     courses: any;
+    service: any;
     constructor(service: CoursesService) {
+        this.service = service
         // let service = new CoursesService();
         this.courses = service.getCourses();
+    };
+
+    isInvalid() {
+        return this.courseName == "" ||
+            this.courseDescription == "" ||
+            this.courseRating == null ||
+            this.courseStudents == null ||
+            this.coursePrice == null ||
+            this.courseDate == ""
+    };
+
+    addCourse() {
+        let courseObj = {
+            name: this.courseName,
+            desc: this.courseDescription,
+            rating: this.courseRating,
+            students: this.courseStudents,
+            price: this.coursePrice,
+            releaseDate: this.courseDate,
+        }
+
+        // console.log(courseObj);
+        
+        if (this.isInvalid()) {
+            return
+        } else {
+            this.courses.push(courseObj);
+
+            this.courseName = "";
+            this.courseDescription = "";
+            this.courseRating = null;
+            this.courseStudents = null;
+            this.coursePrice = null;
+            this.courseDate = "";
+        }
+    };
+
+    deleteCourse(course: object) {
+        let index = this.courses.indexOf(course);
+        this.courses.splice(index, 1);
+    };
+
+    // using trackBy ensures that each time button is clicked to reloadCourse, Angular doesn't reconstruct the <ul> element, but rather track the object based on the id NOT the reference generated
+    trackCourse(index: number, course: any) {
+        return index? course.id : undefined;
+    };
+
+    reloadCourse() {
+        // console.log(this.service);
+        this.courses = this.service.getCourses()
     };
 
     getTitle() {

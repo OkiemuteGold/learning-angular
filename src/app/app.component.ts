@@ -8,6 +8,7 @@ import { onFavoriteChangeEventArgs } from './favorite/favorite.component';
 })
 export class AppComponent {
   title = 'hello-world';
+  viewMode = 'grid';
 
   post = {
     title: "My Title",
