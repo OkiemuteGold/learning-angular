@@ -88,9 +88,9 @@
 <div class="my-4" *ngIf="showCourse">
     <form (submit)="addCourse()">
         <div class="form-group">
-            <input class="form-control my-3" type="text" name="name" id="name" placeholder="Course name" [(ngModel)]="courseName">
+            <input class="form-control my-3" type="text" name="name" id="name" placeholder="Course name" [(ngModel)]="courseName" appInputFormatter [format]="'uppercase'">
 
-            <input class="form-control my-3" type="text" name="description" id="description" placeholder="Course description" [(ngModel)]="courseDescription">
+            <input class="form-control my-3" type="text" name="description" id="description" placeholder="Course description" [(ngModel)]="courseDescription" appInputFormatter>
 
             <input class="form-control my-3" type="number" name="rating" id="rating" min="0" placeholder="Course rating" [(ngModel)]="courseRating">
 

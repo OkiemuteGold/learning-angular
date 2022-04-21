@@ -10,6 +10,7 @@ import { CoursesService } from './all-services/courses.service';
 import { SummaryPipe } from './custom-pipes/summary.pipe';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
+import { InputFormatterDirective } from './all-directives/input-formatter.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PanelComponent } from './panel/panel.component';
     CourseComponent,
     SummaryPipe,
     FavoriteComponent,
-    PanelComponent
+    PanelComponent,
+    InputFormatterDirective
   ],
   imports: [
     BrowserModule,
