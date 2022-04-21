@@ -20,6 +20,13 @@ export class CoursesComponent {
     coursePrice = null;
     courseDate = "";
 
+    tasks = {
+        title: 'Some Review',
+        assignee: {
+            name: 'John Doe'
+        }
+    }
+
     /* Interpolation ------ */
     title = "List of courses";
     
@@ -58,7 +65,7 @@ export class CoursesComponent {
         }
 
         // console.log(courseObj);
-        
+
         if (this.isInvalid()) {
             return
         } else {

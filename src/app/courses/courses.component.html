@@ -89,10 +89,15 @@
     <form (submit)="addCourse()">
         <div class="form-group">
             <input class="form-control my-3" type="text" name="name" id="name" placeholder="Course name" [(ngModel)]="courseName">
+
             <input class="form-control my-3" type="text" name="description" id="description" placeholder="Course description" [(ngModel)]="courseDescription">
+
             <input class="form-control my-3" type="number" name="rating" id="rating" min="0" placeholder="Course rating" [(ngModel)]="courseRating">
+
             <input class="form-control my-3" type="number" name="students" id="students" min="0" placeholder="Number of students enrolled" [(ngModel)]="courseStudents">
+
             <input class="form-control my-3" type="number" name="price" id="price" min="0" placeholder="Course price" [(ngModel)]="coursePrice">
+            
             <input class="form-control my-3" type="date" name="date" id="date" aria-placeholder="Date" [(ngModel)]="courseDate">
         </div>
 
@@ -181,6 +186,27 @@
 </ng-template>
 
 
+<!-- Safe Traversal Operator -->
+<div class="mb-5">
+    <h2>Safe Traversal</h2>
+    <p>
+        Using ? Safe Traversal Operator after the argument to check... If true, it executes the name.
+        <br>
+        This is used incase my initial value for name is null, so there is no error on init.
+        <br>
+        This can also be done using ngIf.
+    </p>
+    
+    <p>
+        <b>Using ?</b> - {{ tasks.assignee?.name}}
+    </p>
+    <p *ngIf="tasks.assignee">
+        <b>Using ngIf</b> - {{ tasks.assignee.name}}
+    </p>
+</div>
+
+
 <!-- Custom Pipe -->
 <h2 class="my-3">Custom Pipe</h2>
 <p>{{longText | summary: 25}}</p>
+
