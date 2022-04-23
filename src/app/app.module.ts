@@ -11,6 +11,7 @@ import { SummaryPipe } from './custom-pipes/summary.pipe';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
 import { InputFormatterDirective } from './all-directives/input-formatter.directive';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { InputFormatterDirective } from './all-directives/input-formatter.direct
     SummaryPipe,
     FavoriteComponent,
     PanelComponent,
-    InputFormatterDirective
+    InputFormatterDirective,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,

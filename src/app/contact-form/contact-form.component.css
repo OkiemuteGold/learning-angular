@@ -1,0 +1,13 @@
+form {
+  max-width: 565px;
+  width: 100%;
+}
+
+.form-control.ng-touched.ng-invalid {
+  border-color: red;
+}
+
+label {
+  margin-top: 10px;
+  margin-bottom: 8px;
+}

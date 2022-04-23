@@ -351,12 +351,16 @@
   </div>
 
   <!-- Resources -->
+  <h2 class="mb-3">Courses</h2>
   <courses class="mb-4"></courses>
+
+  <h2 class="mb-3">Bootstrap Form</h2>
+  <app-contact-form></app-contact-form>
   
   <app-favorite [is-favorite]="post.isFavorite" (change)="onChanged($event)"></app-favorite>
   
   <!-- instead of using property binding [body]="body", and bind the input and output properties for Heading and Body as before use the ng-content in parent component and attach id/class to track it, then reference each at the point of initialization as seen below -->
-  <h1 class="mb-3">NgContent</h1>
+  <h2 class="mb-3">NgContent</h2>
   <bootstrap-panel>
     <!-- to render just the content without putting inside div or any html element use ng-container -->
     <ng-container id="heading">Just Text Heading</ng-container>
