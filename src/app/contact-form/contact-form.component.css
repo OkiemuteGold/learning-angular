@@ -3,6 +3,10 @@ form {
   width: 100%;
 }
 
+.form-control {
+  margin-bottom: 10px;
+}
+
 .form-control.ng-touched.ng-invalid {
   border-color: red;
 }
@@ -10,4 +14,17 @@ form {
 label {
   margin-top: 10px;
   margin-bottom: 8px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+}
+
+.radio label {
+  margin-bottom: 0;
+}
+
+.radio input {
+  vertical-align: -1.5px;
 }

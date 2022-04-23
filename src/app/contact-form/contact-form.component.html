@@ -1,7 +1,7 @@
 
 <form #f="ngForm" (ngSubmit)="submit(f)" class="my-3">
     <div class="form-group">
-        <label for="firstName"></label>
+        <label for="firstName">First Name</label>
         <input required minlength="3" maxlength="10" ngModel name="firstName" #firstName="ngModel" type="text" id="firstName" class="form-control" (change)="log(firstName)">
 
         <div class="alert alert-danger mt-2" *ngIf="firstName.touched && firstName.invalid">
@@ -31,11 +31,46 @@
     </div>
     
     <div class="form-group">
-        <label for="comment"></label>
+        <label for="comment">Comments</label>
         <textarea ngModel name="comment" #comment="ngModel" id="comment" cols="30" rows="5" class="form-control"></textarea>
     </div>
 
-    <button class="btn btn-success mt-3" [disabled]="!f.valid || !contact.valid">Submit</button>
+    <!-- Use [value]="method.id or .name" to get or send single value of option but use [ngValue]="method" to send the values as a single object [value] allows for String but [ngValue] allows for object... Add multiple to select multiple values -->
+
+    <div class="form-group">
+        <label for="contactMethod">Contact Method</label>
+        <select ngModel name="contactMethod" id="contactMethod" class="form-control">
+            <option [disabled] value="">Select a contact method</option>
+            <option *ngFor="let method of contactMethods" [ngValue]="method">
+                {{method.name}}
+            </option>
+        </select>
+
+        <select multiple ngModel name="contactMethod" id="contactMethod" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let method of contactMethods" [value]="method.id">
+                {{method.name}}
+            </option>
+        </select>
+    </div>
+
+    <div *ngFor="let method2 of contactMethodsEx2" class="form-group radio">
+        <label>
+            <input type="radio" ngModel name="contactMethodEx2" [value]="method2.id">
+            {{method2.name}}
+        </label>
+    </div>
+
+    <div class="form-group checkbox d-flex align-items-center my-3">
+        <input type="checkbox" ngModel name="isSubscribed" #isSubscribed="ngModel" id="subscribe" class="m-0 me-2">
+        <label for="subscribe" class="m-0">Click to subscribe</label>
+    </div>
+
+    <p *ngIf="isSubscribed.touched && !f.value.isSubscribed">Please subscribe to continue.</p>
+    
+    <p>{{ f.value | json }}</p>
+
+    <button class="btn btn-success mt-2" [disabled]="!f.valid || !contact.valid || !f.value.isSubscribed">Submit</button>
 </form>
 
-<p class="mb-3" *ngIf="comment.value">{{comment}}</p>
+<p class="mb-3" *ngIf="comment.value">{{f.value.comment}}</p>
